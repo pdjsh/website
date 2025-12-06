@@ -1,16 +1,175 @@
 ---
-
+import '../styles/global.css';
 ---
 
-<html lang="en">
+<html lang="en" class="dark">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>pdjsh - Software Engineer</title>
+		<meta name="description" content="Personal site of pdjsh - Software Engineer" />
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class="bg-white dark:bg-black text-zinc-900 dark:text-zinc-100 transition-colors duration-300 font-sans antialiased h-screen overflow-hidden relative">
+		<div class="max-w-5xl mx-auto px-6 py-8 h-full flex flex-col">
+			<!-- Theme toggle -->
+			<div class="flex justify-end mb-6">
+				<button
+					id="theme-toggle"
+					class="group relative bg-zinc-100 dark:bg-zinc-900 border border-zinc-300 dark:border-zinc-800 rounded-full w-10 h-10 flex items-center justify-center hover:border-zinc-900 dark:hover:border-zinc-100 transition-all duration-300"
+					aria-label="Toggle theme"
+				>
+					<!-- Moon icon for light mode -->
+					<svg class="dark:hidden w-5 h-5 text-zinc-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+					</svg>
+					<!-- Sun icon for dark mode -->
+					<svg class="hidden dark:inline w-5 h-5 text-zinc-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+					</svg>
+				</button>
+			</div>
+
+			<!-- Hero Section -->
+			<header class="mb-8">
+				<h1 class="text-5xl font-bold mb-3 text-zinc-900 dark:text-zinc-100">
+          Hi, I'm Pavle
+				</h1>
+				<p class="text-base text-zinc-600 dark:text-zinc-400 max-w-2xl">
+          I'm a product oriented software engineer with 8 years of experience.
+				</p>
+			</header>
+
+			<!-- Main Content -->
+			<main class="flex-1 space-y-6 overflow-auto">
+				<!-- About Section -->
+				<section>
+					<h2 class="text-sm font-semibold mb-2 text-zinc-900 dark:text-zinc-100">About</h2>
+					<p class="text-zinc-700 dark:text-zinc-400 leading-relaxed text-sm">
+          Most of my work experience is with startups, and almost all of them were remote, which I really enjoy.
+          I'm into software engineering but also have a strong interest in economics, so working with crypto and fintech startups has been a great fit for me.
+          It lets me combine my coding skills with learning more about trading, investing, DeFi, and all that stuff.
+          What I really like is digging deep into the product I'm building, questioning decisions and being involved beyond just the code and understanding the bigger picture.
+					</p>
+				</section>
+
+				<!-- Experience Section -->
+				<section>
+					<h2 class="text-sm font-semibold mb-2 text-zinc-900 dark:text-zinc-100">Stack</h2>
+					<p class="text-zinc-700 dark:text-zinc-400 leading-relaxed text-sm">
+          I work mostly with TypeScript and Python, though lately my Python got a bit rusty. I worked with different frameworks on both ends of the stack, and if I had to pick my most comfortable ones it would be React/NextJS and Flask.
+          I'm also enjoying working on infra stuff, used to mess around with cloud providers in the past, but more recently the companies I worked at had room for improving things by self hosting them which I loved doing.
+					</p>
+				</section>
+
+				<!-- Now Section -->
+				<section>
+					<h2 class="text-sm font-semibold mb-2 text-zinc-900 dark:text-zinc-100">Now</h2>
+					<p class="text-zinc-700 dark:text-zinc-400 leading-relaxed text-sm">
+          Whenever I manage to find some spare time, I'm learning Solidity, since my goal is to cover that part of the crypto "stack".
+          I'm always reading about different DeFi and financial mechanics because they're exciting, even though they can be quite complex.
+          I'm also considering picking up Go or Rust, but I haven't decided just yet.
+          In general I like trying things out, so for this page I wanted to give Astro, Bun, and spec-kit a whirl
+					</p>
+				</section>
+
+				<!-- Interests Section -->
+				<section>
+					<h2 class="text-sm font-semibold mb-2 text-zinc-900 dark:text-zinc-100">Interests</h2>
+					<p class="text-zinc-700 dark:text-zinc-400 leading-relaxed text-sm">
+          I'm a Linux user (Arch, btw) and enjoy always learning more and trying out different tools and tweaking my config, again, when time allows.
+          I've been using nvim for a few years now and I'm constantly changing my config, especially recently with all the AI craze.
+          I'm also into mechanical keyboards, definitely have too many of them, and I enjoy rotating them depending on the mood.
+					</p>
+				</section>
+
+				<!-- Contact Section -->
+				<section>
+					<h2 class="text-sm font-semibold mb-2 text-zinc-900 dark:text-zinc-100">Contact</h2>
+					<p class="text-zinc-700 dark:text-zinc-400 leading-relaxed text-sm">
+          Your can reach out to me via email at
+					<a href="mailto:pavle@pdj.sh" class="text-sm text-zinc-900 dark:text-zinc-100 hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors underline">
+						pavle@pdj.sh
+					</a>
+
+					</p>
+				</section>
+			</main>
+		</div>
+
+		<script is:inline>
+			const html = document.documentElement;
+			const themeToggle = document.getElementById('theme-toggle');
+
+			// Load saved theme
+			const savedTheme = localStorage.getItem('theme') || 'dark';
+			if (savedTheme === 'light') {
+				html.classList.remove('dark');
+			}
+
+			// Theme toggle with View Transitions API
+			themeToggle?.addEventListener('click', (event) => {
+				// Check if browser supports View Transitions API
+				if (!document.startViewTransition) {
+					// Fallback for browsers that don't support it
+					html.classList.toggle('dark');
+					localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+					return;
+				}
+
+				// Get the click position
+				const x = event.clientX;
+				const y = event.clientY;
+
+				// Calculate the radius needed to cover the whole screen from click point
+				// We find the farthest corner from the click point
+				const endRadius = Math.hypot(
+					Math.max(x, window.innerWidth - x),
+					Math.max(y, window.innerHeight - y)
+				);
+
+				// Start the view transition
+				const transition = document.startViewTransition(() => {
+					html.classList.toggle('dark');
+					localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+				});
+
+				// Animate the circle reveal
+				transition.ready.then(() => {
+					// Create a circular clip-path animation from the click point
+					document.documentElement.animate(
+						{
+							clipPath: [
+								`circle(0px at ${x}px ${y}px)`,
+								`circle(${endRadius}px at ${x}px ${y}px)`
+							]
+						},
+						{
+							duration: 500,
+							easing: 'ease-in-out',
+							pseudoElement: '::view-transition-new(root)'
+						}
+					);
+				});
+			});
+		</script>
+
+		<style>
+			/* View Transitions API styles */
+			::view-transition-old(root),
+			::view-transition-new(root) {
+				animation: none;
+				mix-blend-mode: normal;
+			}
+
+			::view-transition-old(root) {
+				z-index: 1;
+			}
+
+			::view-transition-new(root) {
+				z-index: 2;
+			}
+		</style>
 	</body>
 </html>
